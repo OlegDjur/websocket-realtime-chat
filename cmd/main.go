@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"realtime-chat/internal/router"
 	"realtime-chat/internal/user"
 	"realtime-chat/internal/websocket"
 	"realtime-chat/pkg/db"
@@ -22,4 +23,5 @@ func main() {
 	go hub.Run()
 
 	router.InitRouter(userHandler, wsHandler)
+	router.Start("0.0.0.0:8080")
 }
