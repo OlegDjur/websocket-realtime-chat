@@ -10,7 +10,7 @@ type Database struct {
 	db *sql.DB
 }
 
-func InitDB() (*Database, error) {
+func NewDatabase() (*Database, error) {
 	db, err := sql.Open("postgres", "postgresql://root:password@localhost:5432/go-chat?sslmode=disable")
 	if err != nil {
 		return nil, err
