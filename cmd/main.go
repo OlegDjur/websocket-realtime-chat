@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"realtime-chat/internal/user"
+	"realtime-chat/internal/websocket"
 	"realtime-chat/pkg/db"
 )
 
@@ -15,6 +16,10 @@ func main() {
 	userRep := user.NewRepository(dbConn.GetDB())
 	userSvc := user.NewService(userRep)
 	userHandler := user.NewHandler(userSvc)
+
+	hub := websocket.NewHub()
+	wsHandler := websocket.NewHandler(hub)
+	go hub.Run()
 
 	router.InitRouter(userHandler, wsHandler)
 }

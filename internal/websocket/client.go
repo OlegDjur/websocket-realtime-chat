@@ -42,7 +42,7 @@ func (c *Client) readMessage(hub *Hub) {
 	}()
 
 	for {
-		_, m, err := c.Conn.readMessage()
+		_, m, err := c.Conn.ReadMessage()
 		if err != nil {
 			if websocket.IsUnexpectedCloseError(err, websocket.CloseGoingAway, websocket.CloseAbnormalClosure) {
 				log.Printf("error: %v", err)
